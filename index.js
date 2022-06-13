@@ -154,7 +154,10 @@ window.onload = function() {
         // Get the name of the user
         chat_input.placeholder = `${parent.get_name()}, type your message here...`
         chat_input.onkeypress = function(event) {
-            if (event.keyCode == 13 && chat_input.value.length != 0) {
+            if (event.keyCode == 13) {
+                if (chat_input.value.trim().length <= 0){
+                  return
+                }
                 // Enable the loading circle in the 'chat_content_container'
                 parent.create_load('chat_content_container')
                 // Send the message. Pass in the chat_input.value
@@ -166,13 +169,13 @@ window.onload = function() {
               }
         }
         chat_input.onkeyup  = function(){
-          if (chat_input.value.length > 0) {
+          if (chat_input.value.trim().length > 0) {
             chat_input_send.removeAttribute('disabled')
             chat_input_send.classList.add('enabled')
             chat_input_send.onclick = function(){
               chat_input_send.setAttribute('disabled', true)
               chat_input_send.classList.remove('enabled')
-              if(chat_input.value.length <= 0){
+              if (chat_input.value.length <= 0){
                 return
               }
               // Enable the loading circle in the 'chat_content_container'
