@@ -154,7 +154,7 @@ window.onload = function() {
         // Get the name of the user
         chat_input.placeholder = `${parent.get_name()}, type your message here...`
         chat_input.onkeypress = function(event) {
-            if (event.keyCode == 13) {
+            if (event.keyCode == 13 && chat_input.value.length != 0) {
                 // Enable the loading circle in the 'chat_content_container'
                 parent.create_load('chat_content_container')
                 // Send the message. Pass in the chat_input.value
